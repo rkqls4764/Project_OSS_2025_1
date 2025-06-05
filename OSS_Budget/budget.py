@@ -24,4 +24,20 @@ class Budget:
         total = sum(e.amount for e in self.expenses)
         print(f"총 지출: {total}원\n")
 
+    # 태그별 지출 합계 조회 함수
+    def tag_spent(self):
+        if not self.expenses:
+            print("지출 내역이 없습니다.\n")
+            return
+        
+        tag_totals = {}
+        for e in self.expenses:
+            if e.category not in tag_totals:
+                tag_totals[e.category] = 0
+            tag_totals[e.category] += e.amount
+        
+        print("\n[태그별 지출 합계]")
+        for tag, total in tag_totals.items():
+            print(f"{tag}: {total}원")
+        print()
 

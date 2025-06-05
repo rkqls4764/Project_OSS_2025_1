@@ -7,9 +7,10 @@ def main():
     while True:
         print("==== 간단 가계부 ====")
         print("1. 지출 추가")
-        print("2. 지출 목록 보기")
-        print("3. 총 지출 보기")
-        print("4. 종료")
+        print("2. 지출 삭제")   # 지출 삭제 옵션 추가
+        print("3. 지출 목록 보기")
+        print("4. 총 지출 보기")
+        print("5. 종료")
         choice = input("선택 > ")
 
         if choice == "1":
@@ -23,12 +24,21 @@ def main():
             budget.add_expense(category, description, amount)
 
         elif choice == "2":
-            budget.list_expenses()
+            idx = int(input("삭제할 지출 번호: "))
+
+            if (0 < idx <= len(budget.expenses)):
+                budget.delete_expense(idx)
+
+            else:
+                print("없는 번호입니다.\n")
 
         elif choice == "3":
-            budget.total_spent()
+            budget.list_expenses()
 
         elif choice == "4":
+            budget.total_spent()
+
+        elif choice == "5":
             print("가계부를 종료합니다.")
             break
 
